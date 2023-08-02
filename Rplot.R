@@ -1,0 +1,10 @@
+#plot(2,5)
+x<-c(1,2,3,4)
+y <- c(6,7,8,9)
+#plot(x,y,type="l",main = "Sample Graph",xlab = "X-axis",ylab = "Y-axis",col="green",)
+#plot(x,y,main = "Sample Graph",xlab = "X-axis",ylab = "Y-axis",col="green",cex=0.7,pch=23)
+#plot(0:10,main = "Sample Graph",xlab = "X-axis",ylab = "Y-axis",col="brown",cex=0.7,pch=8)
+x <- c(1,2,3,4,6)
+y <- c(99,86,87,88,111)
+
+plot(x, y)

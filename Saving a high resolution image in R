@@ -1,0 +1,3 @@
+tiff("test.tiff", units="in", width=5, height=5, res=300)
+# insert ggplot code
+dev.off()
