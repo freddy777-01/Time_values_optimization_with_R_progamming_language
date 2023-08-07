@@ -21,5 +21,6 @@ ggplot(loadData,aes(x=xvalues,y=AccuracyAVG,fill=xvalues))+geom_col(width = 0.5)
     y="Overall accuracy",
     fill ="Legend"
   )+
-  scale_y_continuous(breaks = seq(0,100,by=5))
+  scale_y_continuous(breaks = seq(0,100,by=5))+
+geom_text(aes(label = AccuracyAVG), vjust = -0.5, size = 4, color = "black")
 dev.off()

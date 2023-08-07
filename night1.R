@@ -14,7 +14,7 @@ night_predictredEncoding<-unlist(read_excel("Alldata_excel.xlsx", range = "J61:J
 
 #length(seq(45,66,by=1.6))
 
-tiff("night1.tiff", units="in", width=5, height=5, res=300)
+tiff("night1.tiff", units="in", width=10, height=10, res=300)
 
 ggplot(midnightFrame,aes(x=xAxis))+
   geom_line(aes(y=actual,color="line1"))+geom_point(aes(y=actual,color="line1"),shape=1)+

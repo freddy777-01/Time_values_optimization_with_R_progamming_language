@@ -34,5 +34,5 @@ ggplot(loadData,aes(x=xvalues,y=midnightAccuracyAVG,fill=xvalues))+geom_col(widt
     x="",
     y="Overall accuracy",
     fill ="Legend"
-  )
+  )+geom_text(aes(label = midnightAccuracyAVG), vjust = -0.5, size = 4, color = "black")
 dev.off()
