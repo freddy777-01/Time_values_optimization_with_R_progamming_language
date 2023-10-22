@@ -32,6 +32,7 @@ ggplot(midnightFrame,aes(x=xAxis))+
     x ="",
     color="Legend"
   )+scale_y_continuous(breaks=seq(10,60,by=1))+
+  scale_x_continuous(breaks = seq(1,10,by=1))+
   scale_color_manual(values = c("line1" = "green", "line2" = "red", "line3" = "black","line4"="orange"),
                      labels = lb) +
   scale_shape_manual(values = c("line1" = 16, "line2" = 8, "line3" = 0,"line4"=5),
