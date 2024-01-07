@@ -41,7 +41,7 @@ ggplot(dataFrameServices, aes(x=x_values,y = y_values,fill=x_values)) +
   labs(
     title = "",
     x="",
-    y="Frequency",
+    y="Percentage",
     fill ="Legend"
   )+theme_minimal()+
   theme(axis.text.x = element_blank())+
