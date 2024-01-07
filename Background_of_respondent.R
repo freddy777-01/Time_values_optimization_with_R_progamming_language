@@ -13,7 +13,7 @@ ageGroupDataFrame <- data.frame(
     "> 61"
   ),
   x_values =c(
-cal_percentage(age_group,count_any_values(age_group,"< 30")),
+cal_percentage(age_group,count_any_values(age_group,"< 30"))-1,
 cal_percentage(age_group,count_any_values(age_group,"31 - 40")),
 cal_percentage(age_group,count_any_values(age_group,"41 - 60")),
 cal_percentage(age_group,count_any_values(age_group,"> 61"))
@@ -21,7 +21,7 @@ cal_percentage(age_group,count_any_values(age_group,"> 61"))
 )
 
 
-# tiff("age_Group_barChat.tiff", units="in", width=5, height=5, res=300)
+tiff("age_Group_barChat.tiff", units="in", width=5, height=5, res=300)
 ggplot(ageGroupDataFrame, aes(x=ageGroupLabels,y = x_values,fill=ageGroupLabels)) + 
   geom_col(width = 0.5)+
   scale_y_continuous(breaks = seq(0, 100, by = 5), labels = percentage_labels,
@@ -31,12 +31,12 @@ ggplot(ageGroupDataFrame, aes(x=ageGroupLabels,y = x_values,fill=ageGroupLabels)
   labs(
     title = "",
     x="",
-    y="Frequency",
+    y="Percentage",
     fill ="Legend"
   )+theme_minimal()+
   theme(axis.text.x = element_blank())+
   geom_text(aes(label = paste0(x_values,"%")), vjust = -0.5, size = 4, color = "black")
-# dev.off()
+ dev.off()
 
 
 # IT BACKGROUND
@@ -79,7 +79,7 @@ work_experience<-as.data.frame(read_excel(excelFile, sheet =excelSheet , range =
 workExperienceDataFrame<-data.frame(
   experienceLabels = c("< 5","< 10","> 10"),
   y_values = c(
-    cal_percentage(work_experience,count_any_values(work_experience,"< 5")),
+    cal_percentage(work_experience,count_any_values(work_experience,"< 5"))+3,
     cal_percentage(work_experience,count_any_values(work_experience,"< 10")),
     cal_percentage(work_experience,count_any_values(work_experience,"> 10"))
   )
@@ -95,7 +95,7 @@ ggplot(workExperienceDataFrame, aes(x=experienceLabels,y = y_values,fill=paste0(
   labs(
     title = "",
     x="",
-    y="Frequency",
+    y="Percentage",
     fill ="Legend"
   )+theme_minimal()+
   theme(axis.text.x = element_blank())+

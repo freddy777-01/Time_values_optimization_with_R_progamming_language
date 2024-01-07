@@ -6,30 +6,45 @@ excelSheet <- "AI_adoption_in_library"
 adoption<-as.data.frame(read_excel(excelFile, sheet =excelSheet , range = "C2:C39",col_names = FALSE,col_types = "text"))
 
 pieChatDataFrame <-data.frame(
-  labels=c("adopted","not adopted"),
-  x_values =c(cal_percentage(adoption,count_any_values(adoption,"YES")),cal_percentage(adoption,count_inverse_values(adoption,"YES")))
+  labels=c("adopted","not adopted","not applicable"),
+  x_values =c(cal_percentage(adoption,count_any_values(adoption,"YES")),
+              cal_percentage(adoption,count_any_values(adoption,"NO")),
+              cal_percentage(adoption,count_any_values(adoption,"<NA>"))
+              )
 )
 
+numeric_values <- as.numeric(gsub("%", "",pieChatDataFrame$x_values))
 
+# Custom colors for the legend
+legend_colors <- c("#FF0000", "#00FF00", "#0000FF")
 
- tiff("adoption_pieChat.tiff", units="in", width=5, height=5, res=300)
- pie3D(dataFrame$x_values, mar = rep(1.75, 4),
-       col = hcl.colors(length(pieChatDataFrame$x_values), "Spectral"),
-       labels = paste0(dataFrame$x_values,"%"))
+# Custom colors for the pie chart
+pie_colors <- c("#FF0000", "#00FF00", "#0000FF")
+
+ tiff("adoption_pieChat.tiff", units="in", width=10, height=5, res=300)
+ pie3D(pieChatDataFrame$x_values, mar = rep(1.75, 4),
+       col = pie_colors,
+       labels = paste0(pieChatDataFrame$x_values,"%"))
  
  legend(
-   x =-0.6,y=-0.4,
+   x =-0.6,y=-0.5,
    legend = pieChatDataFrame$labels,
-   fill = hcl.colors(length(pieChatDataFrame$labels), "Spectral"),
+   fill = legend_colors,
+   #fill = hcl.colors(length(pieChatDataFrame$labels), "Spectral"),
    title = "",
-   cex = 0.8,
+   cex = 0.6,
    horiz = TRUE,
    border = NA,
    bg = "transparent",
    bty = "n"
  )
+ #text3D(0, 0, 0, labels = paste0(dataFrame$x_values, "%"), adj = c(-0.5, 0.5))
  dev.off()
 
+ #updated pie chart
+ 
+ #pie3D(pieChatDataFrame$x_values, labels = paste0(pieChatDataFrame$x_values,"%"))
+ #end of update pie chart
 ### CREATING A BAR CHAT
 
 aquisition<-as.data.frame(read_excel(excelFile, sheet = excelSheet, range = "D2:D39",col_names = FALSE,col_types = "text"))
@@ -71,7 +86,7 @@ ggplot(barChatDataFrame, aes(x=x_values,y = y_values,fill=x_values)) +
   labs(
     title = "",
     x="",
-    y="Frequency",
+    y="Percentage",
     fill ="Legend"
   )+theme_minimal()+
   theme(axis.text.x = element_blank())+

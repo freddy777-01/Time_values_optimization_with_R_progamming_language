@@ -16,6 +16,8 @@ count_any_values <- function(dataFrame,valueToCount){
     
   }else if(valueToCount == "NO"){
     value_count <- sum(dataFrame$bool == valueToCount,na.rm = TRUE)
+  }else if(valueToCount == "<NA>"){
+    value_count <- sum(is.na(dataFrame))
   }else{
     value_count <- sum(dataFrame$bool == valueToCount,na.rm = TRUE)
   }
